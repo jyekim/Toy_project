@@ -31,10 +31,10 @@ SMALL_CACTUS = [
     pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus3.png"))
 ]
 
-LARGE_CATCUS = [
+LARGE_CACTUS = [
     pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus1.png")),
-    pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus2.png")),
-    pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus3.png"))
+    pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus2.png")),
+    pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus3.png"))
 ]
 
 BIRD = [
@@ -227,30 +227,30 @@ def main():
      if x_position_bg <= -image_width:
         SCREEN.blit(BG,(image_width + x_position_bg,y_position_bg))
         x_position_bg= 0 #최초 한장과 뒤에 덧붙인 한장으로 계속 이어지는 식
-     x_position_bg -= game_speed   
+     x_position_bg -= game_speed
+   
 
   while run:
-    for event in pygame.event.get():  #사용자가 활동을 하는 동안에
-      if event.type == pygame.QUIT:
-        run = False
+      for event in pygame.event.get():  #사용자가 활동을 하는 동안에
+          if event.type == pygame.QUIT:
+              run = False
 
-    SCREEN.fill((255, 255, 255))
-    userInput = pygame.key.get_pressed()
+      SCREEN.fill((255, 255, 255))
+      userInput = pygame.key.get_pressed()
 
-    player.draw(SCREEN)
-    player.update(userInput)
+      player.draw(SCREEN)
+      player.update(userInput)
     
-    if len(obstacles) == 0:  #리스트가 아무것도 없을때 랜덤하게 생성할 건데 
-       if random.randint(0,2) == 0:  #랜덤값이 0이라면 
-          obstacles.append(SmallCactus(SMALL_CACTUS)) #obstacle이라는 리스트 추가할건데, SmallCactus라는 클래스를 추가할건데 인수를 SMALLCACTUS이미지경로한다 
+      if len(obstacles) == 0:  #리스트가 아무것도 없을때 랜덤하게 생성할 건데 
+         if random.randint(0,2) == 0:  #랜덤값이 0이라면 
+            obstacles.append(SmallCactus(SMALL_CACTUS)) #obstacle이라는 리스트 추가할건데, SmallCactus라는 클래스를 추가할건데 인수를 SMALLCACTUS이미지경로한다
+         elif random.randint(0,2) == 1:
+            obstacles.append(LargeCactus(LARGE_CACTUS))
+         elif random. randint(0,2) == 2:
+            obstacles.append(Bird(BIRD))
 
-       elif random.randint(0,2) == 1:
-          obstacles.append(LargeCactus(LARGE_CATCUS))
-       elif random. randint(0,2) == 2:
-          obstacles.append(Bird(BIRD))
 
-
-       for obstacle in obstacles: # 리스트 요소들을 반복한다.
+      for obstacle in obstacles: # 리스트 요소들을 반복한다.
            obstacle.draw(SCREEN)
            obstacle.update()
            if player.dino_rect.colliderect(obstacle.rect):  #플레이어가 장애물사각에 부딪힘을 설정
@@ -258,17 +258,16 @@ def main():
               death_count += 1
               menu(death_count)
 
+      background()
 
-    background()
-
-    cloud.draw(SCREEN)
-    cloud.update()
+      cloud.draw(SCREEN)
+      cloud.update()
 
 
-    score() 
+      score() 
 
-    clock.tick(30)  #이미지 업데이트 할 때 초당 30장 로드
-    pygame.display.update()
+      clock.tick(30)  #이미지 업데이트 할 때 초당 30장 로드
+      pygame.display.update()
 
 def menu(death_count):
     global points
@@ -302,4 +301,4 @@ menu(death_count=0)
 ### 3. 점수기능과 배경, 구름, 트랙 
 #구름이 게임에서 오른쪽에서 왼쪽으로 지나감 
 #트랙도 오른쪽에서 왼쪽으로 지나감 
-main()
+
