@@ -290,12 +290,15 @@ def menu(death_count):
        SCREEN.blit(text, textRect)
        SCREEN.blit(RUNNING[0], (SCREEN_WIDTH//2-50, SCREEN_HEIGHT//2 -140))
        pygame.display.update()
+       
       
        for event in pygame.event.get():
           if event.type == pygame.QUIT:
              run = False
+             pygame.quit()
           if event.type == pygame.KEYDOWN:
              main()
+             return
              
 menu(death_count=0)
 ### 3. 점수기능과 배경, 구름, 트랙 
