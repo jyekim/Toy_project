@@ -3,6 +3,8 @@
 ###  1.  hangman game 
 <img src='https://github.com/jyekim/Toy_project/assets/121778189/0396fc71-7c57-4dcf-bd85-5bd76096747e'>
 <img src='https://github.com/jyekim/Toy_project/assets/121778189/45845b1d-1862-4c45-8264-7587226bab1e'>
+
+
 python을 활용하여 게임 로직을 만들었고 Pygame 라이브러리를 사용하여 게임화면을 구성하였습니다. 
 
 #### 사용기능 
